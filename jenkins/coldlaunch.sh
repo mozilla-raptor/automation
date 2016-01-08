@@ -47,7 +47,7 @@ run_coldlaunch_test() {
     local DATABASE_FLAG="--database ${RAPTOR_DATABASE_NAME}"
   fi
 
-  DEBUG=* node_modules/.bin/raptor test coldlaunch \
+  DEBUG=* ${PWD}/node_modules/.bin/raptor test coldlaunch \
     --serial ${ANDROID_SERIAL} \
     --app ${APP_ORIGIN} \
     --runs ${RUNS} \
@@ -64,7 +64,7 @@ run_coldlaunch_test() {
 
   # submit results to db
   if [[ ${LINES} -eq ${EXPECTED} ]] && [[ ${APP_FAILURE} == 0 ]] ; then
-    DEBUG=* node_modules/.bin/raptor submit ${FILE_FORMAT}.ldjson \
+    DEBUG=* ${PWD}/node_modules/.bin/raptor submit ${FILE_FORMAT}.ldjson \
       --host ${RAPTOR_HOST} \
       --port ${RAPTOR_PORT} \
       --username ${RAPTOR_USERNAME} \
