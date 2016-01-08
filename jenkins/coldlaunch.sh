@@ -3,6 +3,7 @@
 # receive list of apps to run coldlaunch test against
 # i.e. 'calendar clock communications@dialer email'
 APP_LIST=$1
+JOB_TIME=$(node -e "console.log(Date.now());")
 
 post_to_treeherder() {
   local RAPTOR_BUILD_STATE=$1
@@ -15,7 +16,7 @@ post_to_treeherder() {
   source raptor-env/bin/activate
   python --version
 
-  post-to-treeherder/submit-to-treeherder.py \
+  TEST_TIME="${JOB_TIME}" post-to-treeherder/submit-to-treeherder.py \
     --repository b2g-inbound \
     --build-state ${RAPTOR_BUILD_STATE} \
     --treeherder-url https://treeherder.allizom.org/ \
@@ -52,7 +53,7 @@ run_coldlaunch_test() {
     --app ${APP_ORIGIN} \
     --runs ${RUNS} \
     --timeout ${TIMEOUT} \
-    --time ${TEST_TIME} \
+    --time ${JOB_TIME} \
     --metrics ${FILE_FORMAT}.ldjson \
     --logcat ${FILE_FORMAT}.logcat \
     ${ENTRY_FLAG} 2>&1 | tee ${FILE_FORMAT}.log
