@@ -26,6 +26,7 @@ python --version
 git clone https://github.com/mozilla-raptor/post-to-treeherder.git
 cd post-to-treeherder
 pip install -r requirements.txt
+cd ..
 
 # grab the gecko revision from device using fxos-device-service
 # and write to file; the treeherder submisison code needs it
