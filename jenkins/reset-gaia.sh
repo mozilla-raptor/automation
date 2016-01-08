@@ -1,6 +1,6 @@
 #!/bin/sh -xe
 
-cd gaia
+cd ${PWD}/gaia
 make raptor
 
 ${ADB} wait-for-device 
@@ -14,4 +14,4 @@ while [ "$(getprop sys.boot_completed)" == "1" ]; do
 done'
 
 sleep 30
-cd ..
+cd -
