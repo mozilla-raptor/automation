@@ -23,7 +23,7 @@ source raptor-env/bin/activate
 
 python --version
 
-git clone https://github.com/mozilla-raptor/post-to-treeherder.git
+git clone --depth 1 https://github.com/mozilla-raptor/post-to-treeherder.git
 cd post-to-treeherder
 pip install -r requirements.txt
 cd ..
